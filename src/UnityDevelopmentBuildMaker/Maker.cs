@@ -10,10 +10,10 @@ public class Maker
 
     private readonly MakerConfig _config;
 
-    private static readonly string[] _filesToReplace = new[]
+    private static readonly (string Name, bool IsRequired)[] _filesToReplace = new[]
     {
-        "UnityPlayer.dll",
-        "WinPixEventRuntime.dll",
+        ( "UnityPlayer.dll", true ),
+        ( "WinPixEventRuntime.dll", false ),
     };
 
     private static readonly string[] _directoriesToReplace = new[]
@@ -85,12 +85,17 @@ public class Maker
 
         foreach (var file in _filesToReplace)
         {
-            var fromPath = Path.Combine(fromDirectory, file);
-            var toPath = Path.Combine(toDirectory, file);
+            var fromPath = Path.Combine(fromDirectory, file.Name);
+            var toPath = Path.Combine(toDirectory, file.Name);
+
+            if (!file.IsRequired && !File.Exists(fromPath))
+            {
+                continue;
+            }
 
             if (File.Exists(toPath))
             {
-                File.Move(toPath, Path.Combine(backupDirectory, file));
+                File.Move(toPath, Path.Combine(backupDirectory, file.Name));
             }
 
             File.Copy(fromPath, toPath);
