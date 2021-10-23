@@ -29,11 +29,8 @@ jobs:
         dotnet-version: '6.0.x'
         include-prerelease: true
 
-    - name: dotnet restore
-      run: dotnet restore
-
     - name: dotnet publish
-      run: dotnet publish --no-restore -c ${{ matrix.configuration }} -r ${{ matrix.runtime }} -o ${{ env.OUTPUT_DIR }} --self-contained
+      run: dotnet publish -c ${{ matrix.configuration }} -r ${{ matrix.runtime }} -o ${{ env.OUTPUT_DIR }} --self-contained
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
