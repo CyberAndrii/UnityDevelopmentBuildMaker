@@ -6,7 +6,14 @@ internal class Program
 {
     private static async Task Main(string[] args)
     {
-        var result = Parser.Default.ParseArguments<MakerConfig>(args);
+        var parser = new Parser(config =>
+        {
+            config.CaseSensitive = false;
+            config.HelpWriter = Console.Error;
+            config.EnableDashDash = true;
+        });
+
+        var result = parser.ParseArguments<MakerConfig>(args);
 
         await result.WithParsedAsync(async config =>
         {

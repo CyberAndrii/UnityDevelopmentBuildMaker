@@ -13,14 +13,14 @@ If you want to attach a debugger, you should use Unity's `Attach Unity debugger`
 ### Example
 
 ```cmd
-./UnityDevelopmentBuildMaker.exe --gamePath "D:\SteamLibrary\steamapps\common\Unturned" --is64Bit --editorPath "D:\UnityEditors\2019.4.30f1\Editor"
+./UnityDevelopmentBuildMaker.exe --game-path "D:\SteamLibrary\steamapps\common\Unturned" --editor-path "D:\UnityEditors\2019.4.30f1\Editor"
 ```
 
 ### Supported Command Line Options
 
-| Name          | Required           | Description                                                                                              |
-| ------------- | ------------------ | -------------------------------------------------------------------------------------------------------- |
-| gamePath      | :heavy_check_mark: | Root directory of the game (where the game's executable is located).                                     |
-| is64Bit       | :heavy_check_mark: | Is the game 64 or 32 bit. The game may crash if you specify this wrong.                                  |
-| editorPath    | :heavy_check_mark: | Root directory of the editor (where `Unity.exe` is located). Must be the same version the game is using. |
-| help          | :x:                | Display supported arguments.                                                                             |
+| Name        | Required           | Description                                                                                              |
+| ----------- | ------------------ | -------------------------------------------------------------------------------------------------------- |
+| game-path   | :heavy_check_mark: | Root directory of the game (where the game's executable is located).                                     |
+| is-x86      | :x:                | Is the game's arch x64 or x86 (x64 if not specified). The game may crash if you specify this wrong.      |
+| editor-path | :heavy_check_mark: | Root directory of the editor (where `Unity.exe` is located). Must be the same version the game is using. |
+| help        | :x:                | Display supported arguments.                                                                             |
