@@ -39,19 +39,19 @@ jobs:
         path: ${{ env.OUTPUT_DIR }}
 
     - name: Zip
-      if: github.event_name == 'release' && ${{ matrix.configuration }} == 'Release'
+      if: github.event_name == 'release' && matrix.configuration == 'Release'
       run: zip -qq -r ${{ env.OUTPUT_ZIP }} *
       working-directory: ${{ env.OUTPUT_DIR }}
 
     - name: Get release
-      if: github.event_name == 'release' && ${{ matrix.configuration }} == 'Release'
+      if: github.event_name == 'release' && matrix.configuration == 'Release'
       id: get-release
       uses: bruceadams/get-release@v1.2.3
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Upload release
-      if: github.event_name == 'release' && ${{ matrix.configuration }} == 'Release'
+      if: github.event_name == 'release' && matrix.configuration == 'Release'
       uses: actions/upload-release-asset@v1.0.2
       env:
         GITHUB_TOKEN: ${{ github.token }}
